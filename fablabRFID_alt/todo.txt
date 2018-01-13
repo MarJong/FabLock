@@ -1,0 +1,31 @@
+ToDo Liste Fensteröffner
+
+Hardware:
+Controller mit 16MHz@3.3V betrieben
+	- 16MHz benötigen mindestens 4.5V -> Datenblatt
+	Speed Grade: 0 - 4MHz@1.8 - 5.5V, 0 - 10MHz@2.7 - 5.5.V, 0 - 20MHz @ 4.5 - 5
+	- Einige Komponente des Controllers laufen dadurch unzuverlässig
+	
+	
+Aufbau ist noch auf Breadboard/Testniveau
+	- Anfällig für Wackelkontakte und Kurzschlüsse
+	- Das Fenster bewegt sich und es kommt zu Vibrationen durch den Motor
+	- Interne Pull-Ups verwendet. Bei der Kabellänge und EMV durch Motor zu Hochohmig
+
+Hardware neu machen ist wahrscheinlich einfacher als modifizieren
+	- Funktionen vom Arduino auf den rPi auslagern?
+	- Arduino mit 5V Betriebsspannung?
+	- ARM mit 3.3V Betriebsspannung?
+	- Kabelbeschriftung fehlt -> Max
+	
+Klemmen für Kabel kaufen?!
+	
+
+
+Software
+	- Nutzt delay im mainloop. WTF?
+	- Kein sanity check; Watchdog nicht möglich, da delay Orgien Anstelle einer state machine
+	- Binäre Verknüpfungen anstelle von logischen. Fehler oder bewusst genutzt? -> Max
+	- Stepper Lib für den Anwendungsfall ungeeignet. Erzeugt "Stop&Go" nach jeweils 100 Schritten anstelle einer Rampe über den kompletten Fahrweg des Zahnrads
+	
+Am einfachsten komplett neu machen.

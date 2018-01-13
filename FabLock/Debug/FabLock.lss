@@ -1,0 +1,359 @@
+
+FabLock.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  000002bc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000248  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000004  00800100  00800100  000002bc  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000002bc  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002ec  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000078  00000000  00000000  0000032c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000cd1  00000000  00000000  000003a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000892  00000000  00000000  00001075  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000003b2  00000000  00000000  00001907  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000108  00000000  00000000  00001cbc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000481  00000000  00000000  00001dc4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000001d7  00000000  00000000  00002245  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000058  00000000  00000000  0000241c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 fd 00 	jmp	0x1fa	; 0x1fa <__vector_14>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a4 30       	cpi	r26, 0x04	; 4
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 93 00 	call	0x126	; 0x126 <main>
+  88:	0c 94 22 01 	jmp	0x244	; 0x244 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <_ZN4CLEDC1EPVhh>:
+	*(this->port) |= (1 << this->pin);
+}
+
+void CLED::off()
+{
+	*(this->port) &= ~(1 << this->pin);
+  90:	fc 01       	movw	r30, r24
+  92:	71 83       	std	Z+1, r23	; 0x01
+  94:	60 83       	st	Z, r22
+  96:	42 83       	std	Z+2, r20	; 0x02
+  98:	17 82       	std	Z+7, r1	; 0x07
+  9a:	10 86       	std	Z+8, r1	; 0x08
+  9c:	11 86       	std	Z+9, r1	; 0x09
+  9e:	12 86       	std	Z+10, r1	; 0x0a
+  a0:	13 82       	std	Z+3, r1	; 0x03
+  a2:	14 82       	std	Z+4, r1	; 0x04
+  a4:	15 82       	std	Z+5, r1	; 0x05
+  a6:	16 82       	std	Z+6, r1	; 0x06
+  a8:	08 95       	ret
+
+000000aa <_ZN4CLED6toggleEv>:
+}
+
+void CLED::toggle()
+{
+  aa:	dc 01       	movw	r26, r24
+	*(this->port) ^= (1 << this->pin);
+  ac:	ed 91       	ld	r30, X+
+  ae:	fc 91       	ld	r31, X
+  b0:	11 97       	sbiw	r26, 0x01	; 1
+  b2:	40 81       	ld	r20, Z
+  b4:	21 e0       	ldi	r18, 0x01	; 1
+  b6:	30 e0       	ldi	r19, 0x00	; 0
+  b8:	c9 01       	movw	r24, r18
+  ba:	12 96       	adiw	r26, 0x02	; 2
+  bc:	0c 90       	ld	r0, X
+  be:	02 c0       	rjmp	.+4      	; 0xc4 <_ZN4CLED6toggleEv+0x1a>
+  c0:	88 0f       	add	r24, r24
+  c2:	99 1f       	adc	r25, r25
+  c4:	0a 94       	dec	r0
+  c6:	e2 f7       	brpl	.-8      	; 0xc0 <_ZN4CLED6toggleEv+0x16>
+  c8:	84 27       	eor	r24, r20
+  ca:	80 83       	st	Z, r24
+  cc:	08 95       	ret
+
+000000ce <_ZN4CLED8setDelayEm>:
+}
+
+void CLED::setDelay(uint32_t newDelay)
+{
+	this->delay = newDelay;
+  ce:	fc 01       	movw	r30, r24
+  d0:	47 83       	std	Z+7, r20	; 0x07
+  d2:	50 87       	std	Z+8, r21	; 0x08
+  d4:	61 87       	std	Z+9, r22	; 0x09
+  d6:	72 87       	std	Z+10, r23	; 0x0a
+  d8:	08 95       	ret
+
+000000da <_ZN4CLED4stepEm>:
+}
+
+void CLED::step(uint32_t tick)
+{
+  da:	cf 92       	push	r12
+  dc:	df 92       	push	r13
+  de:	ef 92       	push	r14
+  e0:	ff 92       	push	r15
+  e2:	0f 93       	push	r16
+  e4:	1f 93       	push	r17
+	if(this->delay == 0)
+  e6:	fc 01       	movw	r30, r24
+  e8:	07 81       	ldd	r16, Z+7	; 0x07
+  ea:	10 85       	ldd	r17, Z+8	; 0x08
+  ec:	21 85       	ldd	r18, Z+9	; 0x09
+  ee:	32 85       	ldd	r19, Z+10	; 0x0a
+  f0:	01 15       	cp	r16, r1
+  f2:	11 05       	cpc	r17, r1
+  f4:	21 05       	cpc	r18, r1
+  f6:	31 05       	cpc	r19, r1
+  f8:	79 f0       	breq	.+30     	; 0x118 <_ZN4CLED4stepEm+0x3e>
+	{
+		return;
+	}
+	
+	if((tick - this->last_tick) >= this->delay)
+  fa:	c3 80       	ldd	r12, Z+3	; 0x03
+  fc:	d4 80       	ldd	r13, Z+4	; 0x04
+  fe:	e5 80       	ldd	r14, Z+5	; 0x05
+ 100:	f6 80       	ldd	r15, Z+6	; 0x06
+ 102:	4c 19       	sub	r20, r12
+ 104:	5d 09       	sbc	r21, r13
+ 106:	6e 09       	sbc	r22, r14
+ 108:	7f 09       	sbc	r23, r15
+ 10a:	40 17       	cp	r20, r16
+ 10c:	51 07       	cpc	r21, r17
+ 10e:	62 07       	cpc	r22, r18
+ 110:	73 07       	cpc	r23, r19
+ 112:	10 f0       	brcs	.+4      	; 0x118 <_ZN4CLED4stepEm+0x3e>
+	{
+		this->toggle();
+ 114:	0e 94 55 00 	call	0xaa	; 0xaa <_ZN4CLED6toggleEv>
+	}
+ 118:	1f 91       	pop	r17
+ 11a:	0f 91       	pop	r16
+ 11c:	ff 90       	pop	r15
+ 11e:	ef 90       	pop	r14
+ 120:	df 90       	pop	r13
+ 122:	cf 90       	pop	r12
+ 124:	08 95       	ret
+
+00000126 <main>:
+#include <util/delay.h>
+
+volatile uint32_t SysTick = 0;
+
+int main(void)
+{
+ 126:	cf 93       	push	r28
+ 128:	df 93       	push	r29
+ 12a:	cd b7       	in	r28, 0x3d	; 61
+ 12c:	de b7       	in	r29, 0x3e	; 62
+ 12e:	a1 97       	sbiw	r28, 0x21	; 33
+ 130:	0f b6       	in	r0, 0x3f	; 63
+ 132:	f8 94       	cli
+ 134:	de bf       	out	0x3e, r29	; 62
+ 136:	0f be       	out	0x3f, r0	; 63
+ 138:	cd bf       	out	0x3d, r28	; 61
+	// init ports
+	DDRB = _BV(PB0) | _BV(PB1) | _BV(PB2);
+ 13a:	87 e0       	ldi	r24, 0x07	; 7
+ 13c:	84 b9       	out	0x04, r24	; 4
+	DDRC = 0;
+ 13e:	17 b8       	out	0x07, r1	; 7
+    DDRD = _BV(PD3) | _BV(PD5) | _BV(PD6) | _BV(PD7);
+ 140:	88 ee       	ldi	r24, 0xE8	; 232
+ 142:	8a b9       	out	0x0a, r24	; 10
+	
+	// timer0 -> 1kHz SysTick
+	TCCR0A = _BV(WGM01);
+ 144:	82 e0       	ldi	r24, 0x02	; 2
+ 146:	84 bd       	out	0x24, r24	; 36
+	TCCR0B = _BV(CS00) | _BV(CS01);
+ 148:	93 e0       	ldi	r25, 0x03	; 3
+ 14a:	95 bd       	out	0x25, r25	; 37
+	OCR0A = 124;
+ 14c:	9c e7       	ldi	r25, 0x7C	; 124
+ 14e:	97 bd       	out	0x27, r25	; 39
+	TIMSK0 = _BV(OCIE0A);
+ 150:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
+	
+	// LEDs
+	CLED ledOpen(&PORTD, PD5), ledClose(&PORTD, PD6), ledPull(&PORTD, PD7);
+ 154:	45 e0       	ldi	r20, 0x05	; 5
+ 156:	6b e2       	ldi	r22, 0x2B	; 43
+ 158:	70 e0       	ldi	r23, 0x00	; 0
+ 15a:	ce 01       	movw	r24, r28
+ 15c:	01 96       	adiw	r24, 0x01	; 1
+ 15e:	0e 94 48 00 	call	0x90	; 0x90 <_ZN4CLEDC1EPVhh>
+ 162:	46 e0       	ldi	r20, 0x06	; 6
+ 164:	6b e2       	ldi	r22, 0x2B	; 43
+ 166:	70 e0       	ldi	r23, 0x00	; 0
+ 168:	ce 01       	movw	r24, r28
+ 16a:	0c 96       	adiw	r24, 0x0c	; 12
+ 16c:	0e 94 48 00 	call	0x90	; 0x90 <_ZN4CLEDC1EPVhh>
+ 170:	47 e0       	ldi	r20, 0x07	; 7
+ 172:	6b e2       	ldi	r22, 0x2B	; 43
+ 174:	70 e0       	ldi	r23, 0x00	; 0
+ 176:	ce 01       	movw	r24, r28
+ 178:	47 96       	adiw	r24, 0x17	; 23
+ 17a:	0e 94 48 00 	call	0x90	; 0x90 <_ZN4CLEDC1EPVhh>
+	
+	sei();
+ 17e:	78 94       	sei
+	
+	ledOpen.setDelay(500);
+ 180:	44 ef       	ldi	r20, 0xF4	; 244
+ 182:	51 e0       	ldi	r21, 0x01	; 1
+ 184:	60 e0       	ldi	r22, 0x00	; 0
+ 186:	70 e0       	ldi	r23, 0x00	; 0
+ 188:	ce 01       	movw	r24, r28
+ 18a:	01 96       	adiw	r24, 0x01	; 1
+ 18c:	0e 94 67 00 	call	0xce	; 0xce <_ZN4CLED8setDelayEm>
+	ledClose.setDelay(250);
+ 190:	4a ef       	ldi	r20, 0xFA	; 250
+ 192:	50 e0       	ldi	r21, 0x00	; 0
+ 194:	60 e0       	ldi	r22, 0x00	; 0
+ 196:	70 e0       	ldi	r23, 0x00	; 0
+ 198:	ce 01       	movw	r24, r28
+ 19a:	0c 96       	adiw	r24, 0x0c	; 12
+ 19c:	0e 94 67 00 	call	0xce	; 0xce <_ZN4CLED8setDelayEm>
+	ledPull.setDelay(1000);
+ 1a0:	48 ee       	ldi	r20, 0xE8	; 232
+ 1a2:	53 e0       	ldi	r21, 0x03	; 3
+ 1a4:	60 e0       	ldi	r22, 0x00	; 0
+ 1a6:	70 e0       	ldi	r23, 0x00	; 0
+ 1a8:	ce 01       	movw	r24, r28
+ 1aa:	47 96       	adiw	r24, 0x17	; 23
+ 1ac:	0e 94 67 00 	call	0xce	; 0xce <_ZN4CLED8setDelayEm>
+	
+    while (1) 
+    {	
+		ledOpen.step(SysTick);
+ 1b0:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_edata>
+ 1b4:	50 91 01 01 	lds	r21, 0x0101	; 0x800101 <_edata+0x1>
+ 1b8:	60 91 02 01 	lds	r22, 0x0102	; 0x800102 <_edata+0x2>
+ 1bc:	70 91 03 01 	lds	r23, 0x0103	; 0x800103 <_edata+0x3>
+ 1c0:	ce 01       	movw	r24, r28
+ 1c2:	01 96       	adiw	r24, 0x01	; 1
+ 1c4:	0e 94 6d 00 	call	0xda	; 0xda <_ZN4CLED4stepEm>
+		ledClose.step(SysTick);
+ 1c8:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_edata>
+ 1cc:	50 91 01 01 	lds	r21, 0x0101	; 0x800101 <_edata+0x1>
+ 1d0:	60 91 02 01 	lds	r22, 0x0102	; 0x800102 <_edata+0x2>
+ 1d4:	70 91 03 01 	lds	r23, 0x0103	; 0x800103 <_edata+0x3>
+ 1d8:	ce 01       	movw	r24, r28
+ 1da:	0c 96       	adiw	r24, 0x0c	; 12
+ 1dc:	0e 94 6d 00 	call	0xda	; 0xda <_ZN4CLED4stepEm>
+		ledPull.step(SysTick);
+ 1e0:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_edata>
+ 1e4:	50 91 01 01 	lds	r21, 0x0101	; 0x800101 <_edata+0x1>
+ 1e8:	60 91 02 01 	lds	r22, 0x0102	; 0x800102 <_edata+0x2>
+ 1ec:	70 91 03 01 	lds	r23, 0x0103	; 0x800103 <_edata+0x3>
+ 1f0:	ce 01       	movw	r24, r28
+ 1f2:	47 96       	adiw	r24, 0x17	; 23
+ 1f4:	0e 94 6d 00 	call	0xda	; 0xda <_ZN4CLED4stepEm>
+ 1f8:	db cf       	rjmp	.-74     	; 0x1b0 <main+0x8a>
+
+000001fa <__vector_14>:
+    }
+}
+
+ISR(TIMER0_COMPA_vect)
+{
+ 1fa:	1f 92       	push	r1
+ 1fc:	0f 92       	push	r0
+ 1fe:	0f b6       	in	r0, 0x3f	; 63
+ 200:	0f 92       	push	r0
+ 202:	11 24       	eor	r1, r1
+ 204:	8f 93       	push	r24
+ 206:	9f 93       	push	r25
+ 208:	af 93       	push	r26
+ 20a:	bf 93       	push	r27
+	SysTick++;
+ 20c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 210:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 214:	a0 91 02 01 	lds	r26, 0x0102	; 0x800102 <_edata+0x2>
+ 218:	b0 91 03 01 	lds	r27, 0x0103	; 0x800103 <_edata+0x3>
+ 21c:	01 96       	adiw	r24, 0x01	; 1
+ 21e:	a1 1d       	adc	r26, r1
+ 220:	b1 1d       	adc	r27, r1
+ 222:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 226:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 22a:	a0 93 02 01 	sts	0x0102, r26	; 0x800102 <_edata+0x2>
+ 22e:	b0 93 03 01 	sts	0x0103, r27	; 0x800103 <_edata+0x3>
+ 232:	bf 91       	pop	r27
+ 234:	af 91       	pop	r26
+ 236:	9f 91       	pop	r25
+ 238:	8f 91       	pop	r24
+ 23a:	0f 90       	pop	r0
+ 23c:	0f be       	out	0x3f, r0	; 63
+ 23e:	0f 90       	pop	r0
+ 240:	1f 90       	pop	r1
+ 242:	18 95       	reti
+
+00000244 <_exit>:
+ 244:	f8 94       	cli
+
+00000246 <__stop_program>:
+ 246:	ff cf       	rjmp	.-2      	; 0x246 <__stop_program>
