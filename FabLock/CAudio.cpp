@@ -243,6 +243,7 @@ void CAudio::onTimer()
 void CAudio::stopSong()
 {
 	this->isPlaying = 0;
+	this->frequency = 0;
 	OCR2B = 0x80;
 }
 
